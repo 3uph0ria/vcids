@@ -49,7 +49,21 @@ namespace vcids.Pages
 
         private void BtndelClientService_Click(object sender, RoutedEventArgs e)
         {
-
+            var serviceForDelete = DGridClientServices.SelectedItems.Cast<ClientService>().ToList();
+            if (MessageBox.Show($"Вы действительно хотите удалить клинета(ов)?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    vcibsEntities.GetContext().ClientService.RemoveRange(serviceForDelete);
+                    vcibsEntities.GetContext().SaveChanges();
+                    DGridClientServices.ItemsSource = vcibsEntities.GetContext().ClientService.ToList();
+                    MessageBox.Show("Удаление выделенных элементов прошло успешно");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)

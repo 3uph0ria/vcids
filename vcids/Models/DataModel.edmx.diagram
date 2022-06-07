@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fa79924791334f0aba02e4da260047ed" Name="Diagram1">
+        <EntityTypeShape EntityType="db_a881fc_vcidsModel.Admins" Width="1.5" PointX="8" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a881fc_vcidsModel.Categoris" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a881fc_vcidsModel.Clients" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a881fc_vcidsModel.ClientService" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a881fc_vcidsModel.FurnitureOrders" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a881fc_vcidsModel.Permissions" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a881fc_vcidsModel.Services" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="db_a881fc_vcidsModel.FK_Admins_Permissions" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a881fc_vcidsModel.FK_Services_Categoris" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a881fc_vcidsModel.FK_ClientService_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a881fc_vcidsModel.FK_FurnitureOrders_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a881fc_vcidsModel.FK_ClientService_Services" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

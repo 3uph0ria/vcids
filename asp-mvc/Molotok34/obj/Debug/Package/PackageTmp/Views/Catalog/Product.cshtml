@@ -1,0 +1,105 @@
+﻿@model Molotok34.Models.Services
+@{
+    ViewBag.Title = @Html.EditorFor(model => model.Name);
+
+}
+
+@Html.Partial("~/Views/Shared/_Header.cshtml")
+@Html.Partial("~/Views/Shared/_NavTopPages.cshtml")
+
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>@Html.DisplayFor(model => model.Name)</h2>
+                <ol>
+                    <li><a href="/Catalog/">Каталог</a></li>
+                    <li>@Html.DisplayFor(model => model.Name)</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- Breadcrumbs Section -->
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+
+            <div class="row gy-4">
+
+
+                <div class="d-flex">
+                <div class="col-lg-6">
+                    <div class="portfolio-description">
+                        @Html.DisplayFor(model => model.Description)
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+
+                                <div class="swiper-slide">
+                                    <img src="/assets/img/@Html.DisplayFor(model => model.Img)" alt="">
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <img src="/assets/img/@Html.DisplayFor(model => model.Img)" alt="">
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <img src="/assets/img/@Html.DisplayFor(model => model.Img)" alt="">
+                                </div>
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        @if (TempData["notice"] != null)
+                        {
+                            <div class="alert alert-success alert-dismissible fade show w-100" role="alert">
+                                <p class="m-0">@TempData["notice"]</p>
+                            </div>
+
+                            TempData["notice"] = null;
+                        }
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class=form-group mt-4">
+                                <input class="mt-4 form-control" type="email" id="Email" name="Email" maxlength="50" placeholder="Введите Ваш Email.." required="">
+                            </div>
+                            <div class="form-group mt-4">
+                                <input class="mt-4 form-control" type="tel" name="Phone" id="Phone" maxlength="18" placeholder="Введите Ваш телефон.." required="">
+                            </div>
+                            <div class=form-group mt-4">
+                                <input class="mt-4 form-control" type="text" name="FullName" id="FullName" maxlength="50" placeholder="Введите Ваше ФИО.." required="">
+                            </div>
+                            <div class=form-group mt-4">
+                                <button class="btn btn-outline-warning mt-4 mb-4" type="submit">Заказать</button>
+                            </div>
+
+                        }
+                    </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Portfolio Details Section -->
+
+</main><!-- End #main -->
+
+@Html.Partial("~/Views/Shared/_Footer.cshtml")

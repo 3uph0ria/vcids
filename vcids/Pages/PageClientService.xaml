@@ -55,7 +55,6 @@ TextElement.Foreground="{DynamicResource MaterialDesignBody}"
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="3" Orientation="Horizontal">
-            <Button Content="ДОБАВИТЬ" Margin="20 5 5 5" Name="BtnAddClientService" Click="BtnAddClientService_Click"></Button>
             <Button Content="УДАЛИТЬ" Style="{StaticResource MaterialDesignOutlinedButton}" Margin="5" Name="BtndelClientService" Click="BtndelClientService_Click"></Button>
         </StackPanel>
     </Grid>

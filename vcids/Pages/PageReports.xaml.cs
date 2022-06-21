@@ -38,19 +38,42 @@ namespace vcids.Pages
             //ChatPayments.DataBind();
         }
 
+        public void Update()
+        {
+            if(String.IsNullOrEmpty(DateStart.Text) == false && String.IsNullOrEmpty(DateEnd.Text) == false)
+            {
+                var sales = vcibsEntities.GetContext().ClientService.ToList();
+                sales = sales.Where(p => p.Date > Convert.ToDateTime(DateStart.Text)).ToList();
+                sales = sales.Where(p => p.Date < Convert.ToDateTime(DateEnd.Text)).ToList();
+                DGridReports.ItemsSource = sales;
+            }
+
+        }
+
         private void Btnreport_Click(object sender, RoutedEventArgs e)
         {
             var application = new Excel.Application();
             Excel.Workbook workbook = application.Workbooks.Add();
 
             var sales = vcibsEntities.GetContext().ClientService.ToList();
+            sales = sales.Where(p => p.Date > Convert.ToDateTime(DateStart.Text)).ToList();
+            sales = sales.Where(p => p.Date < Convert.ToDateTime(DateEnd.Text)).ToList();
 
             Excel.Worksheet worksheet = application.Worksheets.Item[1];
-            worksheet.Name = "Отчет по рпродажам";
+            worksheet.Name = "Отчет по сделкам";
 
             Excel.Range headerRange = worksheet.Range[worksheet.Cells[1][1], worksheet.Cells[5][1]];
             headerRange.Merge();
-            headerRange.Value = "Отчет по продажам";
+
+            if (String.IsNullOrEmpty(DateStart.Text) == false && String.IsNullOrEmpty(DateEnd.Text) == false)
+            {
+                headerRange.Value = "Отчет по продажам (c " + DateStart.Text + " по " + DateEnd.Text + ")";
+            }
+            else
+            {
+                headerRange.Value = "Отчет по продажам на " + DateTime.Now;
+            }
+
             headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             headerRange.Font.Italic = true;
 
@@ -72,6 +95,16 @@ namespace vcids.Pages
             }
 
             application.Visible = true;
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
+        }
+
+        private void DateEnd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
         }
     }
 }

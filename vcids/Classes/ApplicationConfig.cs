@@ -8,6 +8,6 @@ namespace vcids.Classes
 {
     class ApplicationConfig
     {
-        public static bool IsDev { get => false; }
+        public static bool IsDev { get => true; }
     }
 }

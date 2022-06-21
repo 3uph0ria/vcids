@@ -18,7 +18,7 @@ TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
@@ -28,21 +28,41 @@ TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Name="Header"
         Text="Header"
         Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
-        <TextBox
-            Grid.Row="1"
-            Name="Search"
-            Style="{StaticResource MaterialDesignFilledTextBox}"
-            VerticalAlignment="Center"
-            AcceptsReturn="True"
-            TextWrapping="Wrap"
-            TextChanged="Search_TextChanged"
-            materialDesign:HintAssist.Hint="Поиск"
-            IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" />
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBox
+                Margin="5"
+                Name="Search"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                VerticalAlignment="Center"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                TextChanged="Search_TextChanged"
+                materialDesign:HintAssist.Hint="Поиск"
+                IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}" />
+
+            <ComboBox 
+                Margin="5"
+                materialDesign:HintAssist.Hint="Категория"
+                Width="350"
+                Grid.Column="1"
+                SelectionChanged="CBoxServices_SelectionChanged"
+                VerticalAlignment="Center"
+                Grid.Row="2"
+                x:Name="CBoxServices"
+                DisplayMemberPath="Name"
+            />
+        </Grid>
+        
         <DataGrid Grid.Row="2" Name="DGridServices" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Категория" Binding="{Binding Categoris.Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Изображение" Binding="{Binding Img}"></DataGridTextColumn>
 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>

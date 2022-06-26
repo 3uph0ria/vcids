@@ -83,7 +83,7 @@ namespace vcids.Pages
             worksheet.Cells[4][2] = "Дата";
 
 
-            int row = 2;
+            int row = 3;
             foreach(var sale in sales)
             {
                 worksheet.Cells[1][row] = sale.Clients.Fullname;
